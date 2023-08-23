@@ -1,5 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
+import './globals.css'
+import Menu from './menu';
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -24,6 +26,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Loc
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <Menu />
           {children}
         </NextIntlClientProvider>
       </body>
