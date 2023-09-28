@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import './globals.css'
 import Menu from './menu';
+import { Inter, Roboto_Mono } from 'next/font/google'
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -9,6 +10,14 @@ interface LocaleLayoutProps {
     locale: string;
   };
 }
+
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'de' }];
@@ -23,7 +32,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Loc
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={inter.className}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Menu />
